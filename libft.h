@@ -60,9 +60,6 @@ void    ft_lstclear(t_list **lst, void (*del)(void *));
 void    ft_lstiter(t_list *lst, void (*f)(void *));
 t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// Mes fonctions
-long    ft_abs(int n);
-
 /*
 // PAS DANS LE SUJET
 char	*ft_strstr(const char *str, const char *to_find);

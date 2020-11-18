@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void		ft_fill_nbr(char **res, size_t nbr, int rang)
+void			ft_fill_nbr(char **res, size_t nbr, int rang)
 {
 	if (nbr < 10)
 		(*res)[rang] = nbr + '0';
@@ -11,7 +11,7 @@ void		ft_fill_nbr(char **res, size_t nbr, int rang)
 	}
 }
 
-char	*ft_itoa_0a9(int n)
+char			*ft_itoa_0a9(int n)
 {
 	char	*res;
 	
@@ -22,7 +22,17 @@ char	*ft_itoa_0a9(int n)
 	return (res);
 }
 
-char		*ft_itoa(int n)
+static long    ft_abs(int n)
+{
+    long    nbr;
+
+    nbr = (long)n;
+    if (nbr >= 0)
+        return (nbr);
+    return (-nbr);
+}
+
+char			*ft_itoa(int n)
 {
 	char	*res;
 	int		len;
