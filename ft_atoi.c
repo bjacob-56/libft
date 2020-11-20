@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int	is_white_space(char c)
+static int	is_white_space(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' ||
 			c == '\f' || c == '\r' || c == ' ')
