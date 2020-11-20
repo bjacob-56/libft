@@ -30,7 +30,8 @@ char	*ft_malloc_ptr(int i, int *j, const char *str, char c)
 	*j = 0;
 	while ((str[i + *j] != c) && str[i + *j])
 		(*j)++;
-	ptr = malloc(sizeof(char) * (*j + 1));
+	if (!(ptr = malloc(sizeof(char) * (*j + 1))))
+		return (NULL);
 	*j = 0;
 	while (str[i + *j] && (str[i + *j] != c))
 	{
@@ -41,7 +42,18 @@ char	*ft_malloc_ptr(int i, int *j, const char *str, char c)
 	return (ptr);
 }
 
-void	sep_str_in_tab(const char *str, char c, char ***str_tab, int *j)
+int		free_all(char ***str_tab, int i_words)
+{
+	int	i;
+
+	i = 0;
+	while (i < i_words)
+		free((*str_tab)[i++]);
+	free (*str_tab);
+	return (0);
+}
+
+int		sep_str_in_tab(const char *str, char c, char ***str_tab, int *j)
 {
 	int		i;
 	char	*ptr;
@@ -55,7 +67,8 @@ void	sep_str_in_tab(const char *str, char c, char ***str_tab, int *j)
 	{
 		if ((str[i] != c) && new_w)
 		{
-			ptr = ft_malloc_ptr(i, j, str, c);
+			if (!(ptr = ft_malloc_ptr(i, j, str, c)))
+				return (free_all(str_tab, i_words));
 			new_w = 0;
 			i = i + *j;
 			(*str_tab)[i_words++] = ptr;
@@ -63,6 +76,7 @@ void	sep_str_in_tab(const char *str, char c, char ***str_tab, int *j)
 		else if (str[i++] == c)
 			new_w = 1;
 	}
+	return (1);
 }
 
 char    **ft_split(char const *s, char c)
@@ -80,16 +94,15 @@ char    **ft_split(char const *s, char c)
 	nb_w = get_nb_words(s, c);
 	if (nb_w == 0)
 	{
-		str_tab = malloc(sizeof(char*));
-		if (!str_tab)
+		if (!(str_tab = malloc(sizeof(char*))))
 			return (NULL);
 		str_tab[0] = 0;
 		return (str_tab);
 	}
-	str_tab = malloc(sizeof(char*) * (nb_w + 1));
-	if (!str_tab)
+	if (!(str_tab = malloc(sizeof(char*) * (nb_w + 1))))
 		return (NULL);
-	sep_str_in_tab(s, c, &str_tab, j);
+	if (!sep_str_in_tab(s, c, &str_tab, j))
+		return (NULL);
 	str_tab[nb_w] = 0;
 	return (str_tab);
 }
