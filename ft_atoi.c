@@ -18,7 +18,7 @@ int	ft_atoi(const char *str)
 	signe = 1;
 	while (is_white_space(*str))
 		str++;
-	while (*str == '-' || *str == '+')
+	if (*str == '-' || *str == '+')
 	{
 		if (*str++ == '-')
 			signe = -signe;
