@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bjacob <bjacob@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/22 10:54:32 by bjacob            #+#    #+#             */
+/*   Updated: 2020/11/22 11:59:02 by bjacob56         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void			ft_fill_nbr(char **res, size_t nbr, int rang)
+void		ft_fill_nbr(char **res, size_t nbr, int rang)
 {
 	if (nbr < 10)
 		(*res)[rang] = nbr + '0';
@@ -11,28 +23,28 @@ void			ft_fill_nbr(char **res, size_t nbr, int rang)
 	}
 }
 
-char			*ft_itoa_0a9(int n)
+char		*ft_itoa_0a9(int n)
 {
 	char	*res;
-	
+
 	if (!(res = malloc(sizeof(char) * 2)))
-            return (NULL);
+		return (NULL);
 	res[0] = n + '0';
 	res[1] = '\0';
 	return (res);
 }
 
-static long    ft_abs(int n)
+static long	ft_abs(int n)
 {
-    long    nbr;
+	long	nbr;
 
-    nbr = (long)n;
-    if (nbr >= 0)
-        return (nbr);
-    return (-nbr);
+	nbr = (long)n;
+	if (nbr >= 0)
+		return (nbr);
+	return (-nbr);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*res;
 	int		len;
@@ -52,7 +64,7 @@ char			*ft_itoa(int n)
 		len++;
 	}
 	if (!(res = malloc(sizeof(char) * len)))
-        return (NULL);
+		return (NULL);
 	ft_fill_nbr(&res, nbr, len - 2);
 	res[len - 1] = '\0';
 	if (n < 0)

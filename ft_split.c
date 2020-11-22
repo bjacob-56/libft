@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bjacob <bjacob@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/22 10:54:33 by bjacob            #+#    #+#             */
+/*   Updated: 2020/11/22 12:12:42 by bjacob56         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int		get_nb_words(const char *str, char c)
 {
-	int		i;
-	int		nb_w;
+	int	i;
+	int	nb_w;
 
 	i = 1;
 	nb_w = 0;
@@ -49,7 +61,7 @@ int		free_all(char ***str_tab, int i_words)
 	i = 0;
 	while (i < i_words)
 		free((*str_tab)[i++]);
-	free (*str_tab);
+	free(*str_tab);
 	return (0);
 }
 
@@ -79,7 +91,7 @@ int		sep_str_in_tab(const char *str, char c, char ***str_tab, int *j)
 	return (1);
 }
 
-char    **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**str_tab;
 	int		nb_w;
